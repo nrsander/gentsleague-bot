@@ -46,7 +46,7 @@ client.on("message", (message) => {
   msgCntnt = message.content.toString().toLowerCase();
 
   // Collusion-detector
-  if (msgCntnt.includes("collusion")) {
+  if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding"))  || msgCntnt.includes("colluder") {
     console.log('[-----COLLUSION DETECTED-----]');
     message.channel.send("WARNING: The Gentleman's League Bureau of Investigations is now monitoring the active conversation. Anything you say can and will be used against you in the Objections channel. Please carry on ...");
   }
