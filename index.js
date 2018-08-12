@@ -36,11 +36,7 @@ client.on("message", (message) => {
   // Collusion-detector
   if (msgCntnt.includes("collusion")) {
     message.channel.send("COLLUSION!!!??????");
-  }// else
-​  // Power-rankings mention detector
-  //if (msgCntnt.includes("power rankings")) {
-  //  message.channel.send("Did somebody say Power Rankings??");
-  //}
+  }
 });
 
 //client.on("message", message => {
