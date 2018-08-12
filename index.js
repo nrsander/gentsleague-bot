@@ -4,9 +4,9 @@
 
 const express = require("express");
 const server = express();
-
-const PORT = process.env.PORT
-server.listen(PORT)
+const PORT = process.env.PORT;
+console.log(PORT);
+server.listen(PORT);
 
 
 // (If running locally:)
