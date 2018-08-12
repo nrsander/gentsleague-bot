@@ -17,7 +17,7 @@ const client = new Discord.Client(); // Create a new Discord client
 const config = require("./config.json");
 const token = process.env.GL_DISCORD_TOKEN;
 
-console.log('Firing up GLBot ...');
+console.log('Firing up GLBot  ...');
 
 client.on('ready', function() {
     console.log('GLBot successfully deployed.')//;
