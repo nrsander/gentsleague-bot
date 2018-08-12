@@ -2,17 +2,23 @@
 // STARTUP:   //
 //============//
 
+console.log('||  <---------------------  Test Boot ...');
+
 const express = require("express");
+console.log('Express loaded');
 const server = express();
+console.log('Express server started successfully');
 const PORT = process.env.PORT;
 console.log(PORT);
 console.log('Server about to start listening ...');
 server.listen(PORT);
 
+
 // (If running locally:)
 // cd Desktop/CRYPTO\ LYFE/Checkup/GLBot
 
 const Discord = require('discord.js'); // Require the discord.js module
+console.log('Discord.js loaded');
 const client = new Discord.Client(); // Create a new Discord client
 console.log('Discord client started successfully');
 const config = require("./config.json");
@@ -32,29 +38,35 @@ client.on('ready', function() {
 //============//
 // COMMANDS:  //
 //============//
-client.on("message", (message) => {
 
-  // Checks for 'Not actually a message' messages
+client.on("message", (message) => {
+  console.log('debug 0');
+
+  // (integrity checks)
   if (message.author.bot) {
+    console.log('Bad Author Error (Bot)');
     return;
   }
   if (message.content.startsWith(config.prefix)) {
+    console.log('Bad Prefix Error (Command)');
     return;
   }
 
-  console.log('*** New message in the GL ***');
+  // (msg->lowercase)
   msgCntnt = message.content.toString().toLowerCase();
+  console.log('tLC worked !!');
 
   // Collusion-detector
   if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
     console.log('[-----COLLUSION DETECTED-----]');
-    message.channel.send("WARNING: The Gentleman's League Bureau of Investigations is now monitoring the active conversation. Anything you say can and will be used against you in the Objections channel. Please carry on ...");
+    message.channel.send("COLLUSION!!!??????");
   }
-
 });
+
 
 //============//
 // INIT BOT:  //
 //============//
+
 // login to Discord with your app's token
 client.login(token);
