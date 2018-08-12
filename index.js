@@ -1,10 +1,9 @@
+//============//
+// STARTUP:   //
+//============//
+
 // (If running locally:)
 // cd Desktop/CRYPTO\ LYFE/Checkup/GLBot
-
-
-//============//
-// SETUP:     //
-//============//
 
 const Discord = require('discord.js'); // Require the discord.js module
 const client = new Discord.Client(); // Create a new Discord client
@@ -14,7 +13,7 @@ const token = process.env.GL_DISCORD_TOKEN
 console.log('Firing up GLBot ...')
 
 client.on('ready', function() {
-    console.log('GLBot deployed.')//;
+    console.log('GLBot successfully deployed.')//;
 });
 // ^ This event runs each time GLBot ...
 //     - Finishes logging in
@@ -63,7 +62,7 @@ client.on("message", (message) => {
 
 
 //============//
-// BOT LOGIN: //
+// INIT BOT:  //
 //============//
 
 // login to Discord with your app's token

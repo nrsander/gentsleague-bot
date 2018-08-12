@@ -1,7 +1,7 @@
 {
   "name": "glbot",
   "version": "1.0.0",
-  "description": "Gentleman's League Bot",
+  "description": "RoboCommish of the Gentleman's League",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
