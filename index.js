@@ -3,10 +3,10 @@
 //============//
 
 const express = require("express");
-const app = express();
+const server = express();
 
 const PORT = process.env.PORT
-app.listen(PORT)
+server.listen(PORT)
 
 
 // (If running locally:)
