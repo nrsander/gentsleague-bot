@@ -53,7 +53,7 @@ client.on("message", (message) => {
   }
 
   // (msg->lowercase)
-  msgCntnt = toLowerCase(message.content);
+  msgCntnt = message.content.toString().toLowerCase());
   console.log('tLC worked !!');
 
   // Collusion-detector
