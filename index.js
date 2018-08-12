@@ -2,6 +2,12 @@
 // STARTUP:   //
 //============//
 
+var port = process.env.PORT || 8000;
+server.listen(port, function() {
+    console.log("GLApp is running on port " + port);
+});
+
+
 // (If running locally:)
 // cd Desktop/CRYPTO\ LYFE/Checkup/GLBot
 
