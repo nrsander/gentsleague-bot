@@ -41,9 +41,20 @@ client.on('ready', function() {
 
 client.on("message", (message) => {
   console.log('debug 0');
+  
   // (integrity checks)
-  if(message.author.bot) return;
-  if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+  if (message.author.bot) {
+    console.log('BAD AUTHOR ERROR');
+    return;
+  } else {
+    console.log('Check 1 of 2 success');
+  }
+  if (!message.content.startsWith(config.prefix) || message.author.bot) {
+    console.log('BAD PREFIX ERROR');
+    return;
+  } else {
+    console.log('Check 2 of 2 success');
+  }
 
   // (msg->lowercase)
   msgCntnt = map(str.lower, message.content);
