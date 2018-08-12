@@ -8,9 +8,9 @@
 const Discord = require('discord.js'); // Require the discord.js module
 const client = new Discord.Client(); // Create a new Discord client
 const config = require("./config.json");
-const token = process.env.GL_DISCORD_TOKEN
+const token = process.env.GL_DISCORD_TOKEN;
 
-console.log('Firing up GLBot ...')
+console.log('Firing up GLBot ...');
 
 client.on('ready', function() {
     console.log('GLBot successfully deployed.')//;
@@ -31,12 +31,12 @@ client.on("message", (message) => {
   if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
   // (msg->lowercase)
-  msgCntnt = map(str.lower, message.content)
+  msgCntnt = map(str.lower, message.content);
 
   // Collusion-detector
   if (msgCntnt.includes("collusion")) {
     message.channel.send("COLLUSION!!!??????");
-  } else
+  }// else
 ​  // Power-rankings mention detector
   //if (msgCntnt.includes("power rankings")) {
   //  message.channel.send("Did somebody say Power Rankings??");
