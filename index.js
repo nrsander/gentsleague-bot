@@ -53,12 +53,12 @@ client.on("message", (message) => {
   }
 
   // (msg->lowercase)
-  msgCntnt = map(str.lower, message.content);
-  console.log('debug 1');
+  msgCntnt = toLowerCase(message.content);
+  console.log('tLC worked !!');
 
   // Collusion-detector
   if (msgCntnt.includes("collusion")) {
-    console.log('debug 2');
+    console.log('[-----COLLUSION DETECTED-----]');
     message.channel.send("COLLUSION!!!??????");
   }
 });
