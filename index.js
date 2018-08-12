@@ -17,7 +17,7 @@ client.on('ready', function() {
 
 client.on("message", (message) => {
   if (message.content.includes("collusion")) {
-    message.channel.send("COLLUSION!!!!????????");
+    message.channel.send("COLLUSION!!!!!????????");
   }
 });
 
