@@ -2,10 +2,10 @@
 // STARTUP:   //
 //============//
 
-var port = process.env.PORT || 8000;
-let server = require('http').Server(app);
-server.listen(port, function() {
-    console.log("GLApp is running on port " + port);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
 });
 
 
