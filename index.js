@@ -9,6 +9,7 @@
 const Discord = require('discord.js'); // Require the discord.js module
 const client = new Discord.Client(); // Create a new Discord client
 const config = require("./config.json");
+const token = process.env.GL_DISCORD_TOKEN
 
 console.log('Firing up GLBot ...')
 
@@ -66,4 +67,4 @@ client.on("message", (message) => {
 //============//
 
 // login to Discord with your app's token
-client.login(config.token);
+client.login(token);
