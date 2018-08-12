@@ -12,7 +12,13 @@ const client = new Discord.Client();
 // - finishes logging in
 // - reconnects after disconnecting
 client.on('ready', function() {
-    console.log('Ready!')//;
+    console.log('Firing up GLBot ...')//;
+});
+
+client.on("message", (message) => {
+  if (message.content.includes("collusion")) {
+    message.channel.send("COLLUSION!!!!????????");
+  }
 });
 
 // login to Discord with your app's token
