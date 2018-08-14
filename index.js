@@ -65,7 +65,8 @@ client.on("message", (message) => {
     //returns all league matchups in a simplified object
     espnFF.getMatchups(cookies, 175917)
           .then(leagueMatchups => {
-            console.log(leagueMatchups);
+            console.log(leagueMatchups[teams].teamName+' scored '+leagueMatchups[teams].score+' points.');
+            message.channel.send(leagueMatchups[teams].teamName+' scored '+leagueMatchups[teams].score+' points.');
           });
     message.channel.send("Finished.");
 
