@@ -62,22 +62,14 @@ client.on("message", (message) => {
     console.log('[-----Scraping ESPN-----]');
     message.channel.send("Downloading...");
 
-    //returns a simplified league standings object sorted by overallStanding
-    espnFF.getOverallStandings(cookies, 175917)
-          .then(result => {
-            console.log(result);
+    //returns all league matchups in a simplified object
+    espnFF.getMatchups(cookies, 175917)
+          .then(leagueMatchups => {
+            console.log(leagueMatchups);
           });
     message.channel.send("Finished.");
 
-    if (msgCntnt.includes("test")) {
-      //MESSAGES a simplified league standings object sorted by overallStanding
-      espnFF.getOverallStandings(cookies, 175917)
-            .then(result => {
-              //console.log(obj.data);
-            });
-      var obj = JSON.parse(result);
-      console.log(obj.data);
-    }
+
 
     //.catch({statusCode: 503}, err => {
     //        console.error(`something bad happened: ${err.message}`);
