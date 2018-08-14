@@ -64,7 +64,7 @@ client.on("message", (message) => {
     //returns simplified league object
     espnFF.getOverallStandings(cookies, 175917)
           .then(result => {
-            var resultSize = result.Size;
+            var resultSize = 12;
             console.log(resultSize)
             var i;
             for (i = 0; i <= resultSize - 1; i++) {
