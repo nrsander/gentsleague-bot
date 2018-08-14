@@ -65,9 +65,13 @@ client.on("message", (message) => {
     //returns simplified league object
     espnFF.getOverallStandings(cookies, 175917)
           .then(result => {
+            console.log('AAA');
             console.log(result);
-            console.log(' ');
-          });
+            console.log('ZZZ');
+          })
+          .done(console.log('Done!'););
+
+
     message.channel.send("Finished.");
 
 
