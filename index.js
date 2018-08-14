@@ -66,7 +66,8 @@ client.on("message", (message) => {
     espnFF.getLeagueStandings(cookies, 175917)
           .then(standings => {
             console.log(standings);
-            console.log(Object.keys(standings));
+            var standings_obj = JSON.parse(standings);
+            console.log(standings_obj.teams);
           });
 
     message.channel.send("Finished.");
