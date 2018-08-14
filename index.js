@@ -65,7 +65,7 @@ client.on("message", (message) => {
     espnFF.getOverallStandings(cookies, 175917)
           .then(result => {
             var resultSize = result.Size;
-            console(resultSize)
+            console.log(resultSize)
             var i;
             for (i = 0; i <= resultSize - 1; i++) {
               // empObj: JsonObject
