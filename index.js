@@ -64,9 +64,19 @@ client.on("message", (message) => {
     //returns simplified league object
     espnFF.getOverallStandings(cookies, 175917)
           .then(result => {
-            console.log('AAA');
-            console.log(result);
-            console.log('ZZZ');
+            var resultSize = result.Size;
+            console(resultSize)
+            var i;
+            for (i = 0; i <= resultSize - 1; i++) {
+              // empObj: JsonObject
+              var empObj = result.ObjectAt(i);
+              console.log(i+")   "+"GL[" + result.StringOf("teamId") + "] = " + result.StringOf("teamLocation") + " " + result.StringOf("teamNickname"));
+              message.author.send(i+")   "+"GL[" + result.StringOf("teamId") + "] = " + result.StringOf("teamLocation") + " " + result.StringOf("teamNickname"));
+            }
+
+            //console.log('AAA');
+            //console.log(result);
+            //console.log('ZZZ');
           })
           .catch({statusCode: 503}, err => {
                   console.error("Error: You fucked up! ${err.message}");
