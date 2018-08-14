@@ -62,12 +62,12 @@ client.on("message", (message) => {
     console.log('[-----Scraping ESPN-----]');
     message.channel.send("Downloading...");
 
-    //returns the entire league standings object
+    //returns the league standings object
     espnFF.getLeagueStandings(cookies, 175917)
           .then(standings => {
             //console.log(standings);
-            for(var exKey in standings) {
-              console.log("key: "+exKey)//+", value:"+standings[exKey]);
+            for(var teamKey in standings[teams]) {
+              console.log("teams: "+teamKey)//+", value:"+standings[exKey]);
             }
             //console.log(standings_obj.teams);
           });
