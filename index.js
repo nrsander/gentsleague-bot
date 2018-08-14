@@ -55,12 +55,11 @@ client.on("message", (message) => {
 
 
 
-
   // ESPN-getter
   if (msgCntnt.includes("espn")) {
 
     console.log('[-----Scraping ESPN-----]');
-    message.channel.send("Downloading...");
+    message.author.send("Scraping...");
 
     //returns simplified league object
     espnFF.getOverallStandings(cookies, 175917)
@@ -69,16 +68,21 @@ client.on("message", (message) => {
             console.log(result);
             console.log('ZZZ');
           })
+          .catch({statusCode: 503}, err => {
+                  console.error("Error: You fucked up! ${err.message}");
+                  message.channel.send("Error: You fucked up!");
+                  message.channel.send("${err.message}");
+                });
           .done(console.log('Done!'););
 
-
-    message.channel.send("Finished.");
+    message.author.send("Finished.");
 
 
 
     //.catch({statusCode: 503}, err => {
     //        console.error(`something bad happened: ${err.message}`);
     //    });
+
   }
 
 
