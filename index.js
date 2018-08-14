@@ -69,10 +69,13 @@ client.on("message", (message) => {
           });
     message.channel.send("Finished.");
 
-    if (msgCntnt.includes()) {
+    if (msgCntnt.includes("test")) {
       //MESSAGES a simplified league standings object sorted by overallStanding
       espnFF.getOverallStandings(cookies, 175917)
             .then(result => {
+              for(var myKey in result) {
+                console.log("key:"+myKey+", value:"+result[myKey]);
+              }
               message.channel.send(JSON.stringify(result, null, 2));
             });
     }
