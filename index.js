@@ -62,17 +62,20 @@ client.on("message", (message) => {
     console.log('[-----Scraping ESPN-----]');
     message.channel.send("Downloading...");
 
-    //returns the league standings object
-    espnFF.getLeagueStandings(cookies, 175917)
-          .then(standings => {
-            //console.log(standings);
-            for(var teamKey in standings[teams]) {
-              console.log("teams: "+teamKey)//+", value:"+standings[exKey]);
-            }
-            //console.log(standings_obj.teams);
+    //returns a simplified league standings object sorted by overallStanding
+    espnFF.getOverallStandings(cookies, 175917)
+          .then(result => {
+            console.log(result);
           });
-
     message.channel.send("Finished.");
+
+    if (msgCntnt.includes()) {
+      //MESSAGES a simplified league standings object sorted by overallStanding
+      espnFF.getOverallStandings(cookies, 175917)
+            .then(result => {
+              message.channel.send(JSON.stringify(result, null, 2));
+            });
+    }
 
     //.catch({statusCode: 503}, err => {
     //        console.error(`something bad happened: ${err.message}`);
