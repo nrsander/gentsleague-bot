@@ -53,17 +53,31 @@ client.on("message", (message) => {
 
   msgCntnt = message.content.toString().toLowerCase();
 
+
+
+
   // ESPN-getter
   if (msgCntnt.includes("espn")) {
+
     console.log('[-----Scraping ESPN-----]');
     message.channel.send("Downloading...");
+
     //returns the entire league standings object
     espnFF.getLeagueStandings(cookies, 175917)
           .then(standings => {
             console.log(standings);
+            console.log(Object.keys(standings));
           });
+
     message.channel.send("Finished.");
+
+    //.catch({statusCode: 503}, err => {
+    //        console.error(`something bad happened: ${err.message}`);
+    //    });
   }
+
+
+
 
   // Collusion-detector
   if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
