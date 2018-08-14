@@ -62,11 +62,11 @@ client.on("message", (message) => {
     console.log('[-----Scraping ESPN-----]');
     message.channel.send("Downloading...");
 
-    //returns all league matchups in a simplified object
-    espnFF.getMatchups(cookies, 175917)
-          .then(leagueMatchups => {
-            console.log(leagueMatchups[teams].teamName+' scored '+leagueMatchups[teams].score+' points.');
-            message.channel.send(leagueMatchups[teams].teamName+' scored '+leagueMatchups[teams].score+' points.');
+    //returns simplified league object
+    espnFF.getOverallStandings(cookies, 175917)
+          .then(result => {
+            console.log(result);
+            console.log(' ');
           });
     message.channel.send("Finished.");
 
