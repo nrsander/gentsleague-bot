@@ -72,8 +72,10 @@ client.on("message", (message) => {
                   console.error("Error: You fucked up! ${err.message}");
                   message.channel.send("Error: You fucked up!");
                   message.channel.send("${err.message}");
-                });
-          .done(console.log('Done!'););
+                })
+          .done(result => {
+            console.log('Done!');
+          });
 
     message.author.send("Finished.");
 
