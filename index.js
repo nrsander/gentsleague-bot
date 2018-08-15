@@ -66,8 +66,8 @@ client.on("message", (message) => {
     espnFF.getOverallStandings(cookies, leagueId)
           .then(result => {
             var resultSize = 12;
-            console.log("ESPN --> GL --> getOverallStandings:")
-            console.log(result)
+            console.log("ESPN --> GL --> getOverallStandings:");
+            console.log(result);
 
             //var resStr;
             var i;
@@ -77,8 +77,8 @@ client.on("message", (message) => {
               // Main:
               message.channel.send("\n" + result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
               console.log(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
-              //testy = getSingleTeamPlayers(cookies, leagueId, i, 16)
-              //console.log(testy)
+              //testy = getSingleTeamPlayers(cookies, leagueId, i, 16);
+              //console.log(testy);
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
 
               var week = 16;
@@ -87,7 +87,7 @@ client.on("message", (message) => {
               tmid = result[i].teamId;
               espnFF.getSingleTeamPlayers(cookies, leagueId, result[i].teamId, week)
                     .then(players => {
-                      message.channel.send("Week " + week + " Starting QBs:"
+                      message.channel.send("Week " + week + " Starting QBs:");
                       rstr = '';
                       for (j=0; j<=playersLimit-1; j++) {
                         if(j>0){
