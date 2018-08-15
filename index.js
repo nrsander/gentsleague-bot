@@ -71,6 +71,7 @@ client.on("message", (message) => {
 
             //var resStr;
             var i;
+            var tmid;
             for (i = 0; i <= resultSize - 1; i++) {
 
               // Main:
@@ -82,6 +83,7 @@ client.on("message", (message) => {
 
               var playersLimit = 1;
               var k;
+              tmid = result[i].teamId;
               espnFF.getSingleTeamPlayers(cookies, leagueId, result[i].teamId, 16)
                     .then(players => {
                       rstr = '';
@@ -89,18 +91,15 @@ client.on("message", (message) => {
                         if(j>0){
                           rstr += ", "
                         };
-<<<<<<< HEAD
-                        rstr += players[result[i].teamId].playerName;
-                        console.log("Run: " + i + "\tTmId: " + i + "\tPlyr: " + j);
-=======
-                        rstr += players[j].playerName;
+
                         console("Run " + j + ":\t" + rstr);
+                        rstr += players[j].playerName;
 
                         //k = result[j].teamId;
                         //console.log("Starting ID="+k);
                         //console.log(result[k].playerName);
->>>>>>> parent of 8c5f3a3... poop
                       }
+                      
                       console.log("Rstr:\t" + rstr)
                       message.channel.send("Players:\n" + rstr)
                     });
