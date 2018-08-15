@@ -66,15 +66,15 @@ client.on("message", (message) => {
           .then(result => {
             var resultSize = 12;
             console.log(result)
-            
+
             var i;
             for (i = 0; i <= resultSize - 1; i++) {
               // empObj: JsonObject
-              var empObj = result.ObjectAt(i);
+              var empObj = result[i].teamLocation;
 
               // Message:
-              console.log(i+")   "+"GL[" + result.StringOf("teamId") + "] = " + result.StringOf("teamLocation") + " " + result.StringOf("teamNickname"));
-              message.author.send(i+")   "+"GL[" + result.StringOf("teamId") + "] = " + result.StringOf("teamLocation") + " " + result.StringOf("teamNickname"));
+              console.log(i+":   "+"GL[" + result[leagueId] + "] = " + result.StringOf(empObj));
+              message.author.send(i+":   "+"GL[" + result[leagueId] + "] = " + result.StringOf(empObj));
 
             }
 
