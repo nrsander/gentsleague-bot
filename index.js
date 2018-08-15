@@ -54,7 +54,6 @@ client.on("message", (message) => {
   msgCntnt = message.content.toString().toLowerCase();
 
 
-
   // ESPN-getter
   if (msgCntnt.includes("^teams")) {
 
@@ -77,9 +76,7 @@ client.on("message", (message) => {
               //testy = getSingleTeamPlayers(cookies, 175917, i, 16)
               //console.log(testy)
               lineups = espnFF.getSingleTeamPlayers(cookies, 175917, result[i].teamId, 16);
-              for (j = 0; j <= lineups.length - 1; j++) {
-                console.log(lineups[j]);
-              }
+              console.log(lineups)
               message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
             }
