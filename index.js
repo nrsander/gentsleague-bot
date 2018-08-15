@@ -61,20 +61,18 @@ client.on("message", (message) => {
     console.log('[ ----- Scraping data from the Gentleman\'s League ESPN page ... ----- ]');
     message.author.send("Thinking ...");
 
-    //returns simplified league object
+    // Returns simplified league object
     espnFF.getOverallStandings(cookies, 175917)
           .then(result => {
             var resultSize = 12;
+            console.log("ESPN --> GL --> getOverallStandings:")
             console.log(result)
-
             var i;
             for (i = 0; i <= resultSize - 1; i++) {
-              // empObj: JsonObject
-              var empObj = result[i].teamLocation;
 
-              // Message:
-              console.log(i+":   "+"GL[" + result[i].leagueId + "] = " + result[i].teamLocation + " " + result[i].teamName);
-              message.author.send(i+":   "+"GL[" + result[i].leagueId + "] = " + result[i].teamLocation + " " + result[i].teamName);
+              // Main:
+              console.log(result[i].teamLocation + " " + result[i].teamNickname + ":  GL Member #" + result[i].teamId);
+              message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + ":  GL Member #" + result[i].teamId);
 
             }
 
