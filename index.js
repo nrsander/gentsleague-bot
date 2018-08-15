@@ -68,18 +68,13 @@ client.on("message", (message) => {
             console.log("ESPN --> GL --> getOverallStandings:")
             console.log(result)
             var i;
+            var resStr;
             for (i = 0; i <= resultSize - 1; i++) {
-
               // Main:
-              console.log(result[i].teamLocation + " " + result[i].teamNickname + ":  GL Member #" + result[i].teamId);
-              message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + ":  GL Member #" + result[i].teamId);
-
+              console.log("GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname);
+              resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
             }
-
-            //console.log('Debug1');
-            //console.log(result);
-            //console.log('ZZZ');
-
+            message.channel.send(resStr)
           })
           .catch({statusCode: 503}, err => {
                   console.error("Error: You fucked up! ${err.message}");
