@@ -71,8 +71,9 @@ client.on("message", (message) => {
             var resStr;
             for (i = 0; i <= resultSize - 1; i++) {
               // Main:
-              console.log("GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname);
-              resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
+              console.log("GL Member #" + result[i].teamId + "\t" + result[i].teamLocation + " " + result[i].teamNickname);
+              message.channel.send("GL Member #" + result[i].teamId + "\t" + result[i].teamLocation + " " + result[i].teamNickname)
+              //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
             }
             message.channel.send(resStr)
           })
