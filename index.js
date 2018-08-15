@@ -76,8 +76,6 @@ client.on("message", (message) => {
               //testy = getSingleTeamPlayers(cookies, 175917, i, 16)
               //console.log(testy)
               message.channel.send("\n" + result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
-              lineup = espnFF.getSingleTeamPlayers(cookies, 175917, result[i].teamId, 16);
-              console.log(lineup)
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
             }
 
@@ -100,6 +98,11 @@ client.on("message", (message) => {
   if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
     console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
     message.channel.send("COLLUSION??");
+    espnFF.getSingleTeamPlayers(cookies, 175917, 1, 16)
+          .then(result => {
+            console.log(result)
+          });
+    console.log(lineup)
   }
 });
 
