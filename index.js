@@ -67,11 +67,14 @@ client.on("message", (message) => {
             var resultSize = 12;
             console.log("ESPN --> GL --> getOverallStandings:")
             console.log(result)
+
             var i;
             var resStr;
             for (i = 0; i <= resultSize - 1; i++) {
               // Main:
               console.log("GL Member #" + result[i].teamId + "\t" + result[i].teamLocation + " " + result[i].teamNickname);
+              testy = getSingleTeamPlayers(cookies, 175917, i, 16)
+              console.log(testy)
               message.channel.send("GL Member #" + result[i].teamId + "\t" + result[i].teamLocation + " " + result[i].teamNickname + "\n\tWins: " + result[i].wins + "\tPoints: " + result[i].pointsFor)
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
             }
