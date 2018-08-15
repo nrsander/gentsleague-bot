@@ -73,8 +73,8 @@ client.on("message", (message) => {
               var empObj = result[i].teamLocation;
 
               // Message:
-              console.log(i+":   "+"GL[" + result[leagueId] + "] = " + result.StringOf(empObj));
-              message.author.send(i+":   "+"GL[" + result[leagueId] + "] = " + result.StringOf(empObj));
+              console.log(i+":   "+"GL[" + result[i].leagueId + "] = " + result[i].teamLocation + " " + result[i].teamName);
+              message.author.send(i+":   "+"GL[" + result[i].leagueId + "] = " + result[i].teamLocation + " " + result[i].teamName);
 
             }
 
