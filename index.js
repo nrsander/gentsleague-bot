@@ -89,8 +89,17 @@ client.on("message", (message) => {
                         if(j>0){
                           rstr += ", "
                         };
+<<<<<<< HEAD
                         rstr += players[result[i].teamId].playerName;
                         console.log("Run: " + i + "\tTmId: " + i + "\tPlyr: " + j);
+=======
+                        rstr += players[j].playerName;
+                        console("Run " + j + ":\t" + rstr);
+
+                        //k = result[j].teamId;
+                        //console.log("Starting ID="+k);
+                        //console.log(result[k].playerName);
+>>>>>>> parent of 8c5f3a3... poop
                       }
                       console.log("Rstr:\t" + rstr)
                       message.channel.send("Players:\n" + rstr)
