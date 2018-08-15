@@ -102,7 +102,6 @@ client.on("message", (message) => {
           .then(result => {
             console.log(result)
           });
-    console.log(lineup)
   }
 });
 
