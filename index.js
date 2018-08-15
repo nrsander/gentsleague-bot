@@ -56,66 +56,59 @@ client.on("message", (message) => {
 
 
   // ESPN-getter
-  if (msgCntnt.includes("espn")) {
+  if (msgCntnt.includes("download gl")) {
 
-    console.log('[-----Scraping ESPN-----]');
-    message.author.send("Scraping...");
+    console.log('[ ----- Scraping data from the Gentleman\'s League ESPN page ... ----- ]');
+    message.author.send("Thinking ...");
 
     //returns simplified league object
     espnFF.getOverallStandings(cookies, 175917)
           .then(result => {
             var resultSize = 12;
-            console.log(resultSize)
+            console.log(result)
+            
             var i;
             for (i = 0; i <= resultSize - 1; i++) {
               // empObj: JsonObject
               var empObj = result.ObjectAt(i);
+
+              // Message:
               console.log(i+")   "+"GL[" + result.StringOf("teamId") + "] = " + result.StringOf("teamLocation") + " " + result.StringOf("teamNickname"));
               message.author.send(i+")   "+"GL[" + result.StringOf("teamId") + "] = " + result.StringOf("teamLocation") + " " + result.StringOf("teamNickname"));
+
             }
 
-            //console.log('AAA');
+            //console.log('Debug1');
             //console.log(result);
             //console.log('ZZZ');
+
           })
           .catch({statusCode: 503}, err => {
                   console.error("Error: You fucked up! ${err.message}");
+                  console.error("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
                   message.channel.send("Error: You fucked up!");
                   message.channel.send("${err.message}");
+                  message.channel.send("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
                 })
           .done(result => {
+            message.channel.send("Done!")
             console.log('Done!');
           });
-
-    message.author.send("Finished.");
-
-
-
-    //.catch({statusCode: 503}, err => {
-    //        console.error(`something bad happened: ${err.message}`);
-    //    });
-
+    //message.author.send("Finished.");
   }
 
 
-
-
-  // Collusion-detector
+  // Collusion Detector
   if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
-    console.log('[-----COLLUSION DETECTED-----]');
-    message.channel.send("WARNING: The Gentleman's League Bureau of Investigations is now monitoring the active conversation. Anything you say can and will be used against you in the Objections channel. Please carry on ...");
+    console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
+    message.channel.send("COLLUSION??");
   }
 });
-
-
-
-
-
 
 
 //============//
 // INIT BOT:  //
 //============//
 
-// login to Discord with your app's token
+// Log in to Discord with token (now stored in server env vars. eat that, Russian bots.)
 client.login(token);
