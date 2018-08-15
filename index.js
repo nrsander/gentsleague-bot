@@ -81,18 +81,20 @@ client.on("message", (message) => {
               //console.log(testy)
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
 
+              var week = 16;
               var playersLimit = 1;
               var k;
               tmid = result[i].teamId;
-              espnFF.getSingleTeamPlayers(cookies, leagueId, result[i].teamId, 16)
+              espnFF.getSingleTeamPlayers(cookies, leagueId, result[i].teamId, week)
                     .then(players => {
+                      message.channel.send("Week " + week + " Starting QBs:"
                       rstr = '';
                       for (j=0; j<=playersLimit-1; j++) {
                         if(j>0){
                           rstr += ", "
                         };
 
-                        console.log("Run " + j + ":\t" + rstr);
+                        console.log("Run-Player" + i + "-" + j + "\t\t" + rstr);
                         rstr += players[j].playerName;
 
                         //k = result[j].teamId;
@@ -100,8 +102,8 @@ client.on("message", (message) => {
                         //console.log(result[k].playerName);
                       }
 
-                      console.log("Rstr:\t" + rstr)
-                      message.channel.send("Players:\n" + rstr)
+                      console.log("players:\t" + rstr);
+                      message.channel.send(rstr);
                     });
             }
           })
