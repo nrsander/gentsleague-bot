@@ -56,7 +56,7 @@ client.on("message", (message) => {
 
 
   // ESPN-getter
-  if (msgCntnt.includes("download gl members")) {
+  if (msgCntnt.includes("^teams")) {
 
     console.log('[ ----- Scraping data from the Gentleman\'s League ESPN page ... ----- ]');
     message.author.send("Thinking ...");
@@ -76,7 +76,7 @@ client.on("message", (message) => {
               console.log(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
               //testy = getSingleTeamPlayers(cookies, 175917, i, 16)
               //console.log(testy)
-              lineups = getSingleTeamPlayers(cookies, 175917, i, 16);
+              lineups = espnFF.getSingleTeamPlayers(cookies, 175917, i, 16);
               for (j = 0; j <= lineups.length - 1; j++) {
                 console.log(lineups[j]);
               }
