@@ -94,13 +94,17 @@ client.on("message", (message) => {
   }
 
 
+  var pipi;
   // Collusion Detector
   if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
     console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
     message.channel.send("COLLUSION??");
     espnFF.getSingleTeamPlayers(cookies, 175917, 1, 16)
           .then(result => {
-            console.log(result)
+            pipi = result.filter(obj => {
+              return obj.playerName
+            })
+            console.log(pipi);
           });
   }
 });
