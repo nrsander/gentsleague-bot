@@ -80,7 +80,6 @@ client.on("message", (message) => {
               //console.log(testy)
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
 
-
               var playersLimit = 1;
               var k;
               espnFF.getSingleTeamPlayers(cookies, leagueId, result[i].teamId, 16)
@@ -90,20 +89,13 @@ client.on("message", (message) => {
                         if(j>0){
                           rstr += ", "
                         };
-                        rstr += players[j].playerName;
-                        console.log("Run " + j + ":\t" + rstr);
-
-                        //k = result[j].teamId;
-                        //console.log("Starting ID="+k);
-                        //console.log(result[k].playerName);
+                        rstr += players[result[i].teamId].playerName;
+                        console.log("Run: " + i + "\tTmId: " + i + "\tPlyr: " + j);
                       }
+                      console.log("Rstr:\t" + rstr)
                       message.channel.send("Players:\n" + rstr)
                     });
-
-
-
             }
-
           })
           .catch({statusCode: 503}, err => {
                   console.error("Error: You fucked up! ${err.message}");
@@ -115,10 +107,6 @@ client.on("message", (message) => {
           .done(result => {
             console.log('Done!');
           });
-
-
-
-
     //message.author.send("Finished.");
   }
 
