@@ -77,6 +77,18 @@ client.on("message", (message) => {
               //console.log(testy)
               message.channel.send("\n" + result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
+
+
+
+              espnFF.getSingleTeamPlayers(cookies, 175917, i, 16)
+                    .then(result => {
+                      for (j=0; j<=16; j++) {
+                        console.log(result[j].playerName)
+                      }
+                    });
+
+
+
             }
 
           })
@@ -90,6 +102,10 @@ client.on("message", (message) => {
           .done(result => {
             console.log('Done!');
           });
+
+
+
+
     //message.author.send("Finished.");
   }
 
@@ -101,10 +117,9 @@ client.on("message", (message) => {
     message.channel.send("COLLUSION??");
     espnFF.getSingleTeamPlayers(cookies, 175917, 1, 16)
           .then(result => {
-            pipi = result.filter(obj => {
-              return obj.playerName
-            })
-            console.log(pipi);
+            for (i=0; i<=16; i++) {
+              console.log(result[i].playerName)
+            }
           });
   }
 });
