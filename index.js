@@ -92,14 +92,14 @@ client.on("message", (message) => {
                           rstr += ", "
                         };
 
-                        console("Run " + j + ":\t" + rstr);
+                        console.log("Run " + j + ":\t" + rstr);
                         rstr += players[j].playerName;
 
                         //k = result[j].teamId;
                         //console.log("Starting ID="+k);
                         //console.log(result[k].playerName);
                       }
-                      
+
                       console.log("Rstr:\t" + rstr)
                       message.channel.send("Players:\n" + rstr)
                     });
