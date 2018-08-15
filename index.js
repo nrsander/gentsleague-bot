@@ -75,11 +75,12 @@ client.on("message", (message) => {
               console.log(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
               //testy = getSingleTeamPlayers(cookies, 175917, i, 16)
               //console.log(testy)
-              lineups = espnFF.getSingleTeamPlayers(cookies, 175917, result[i].teamId, 16);
-              console.log(lineups)
-              message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
+              message.channel.send("\n" + result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
+              lineup = espnFF.getSingleTeamPlayers(cookies, 175917, result[i].teamId, 16);
+              console.log(lineup)
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
             }
+
           })
           .catch({statusCode: 503}, err => {
                   console.error("Error: You fucked up! ${err.message}");
