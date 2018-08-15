@@ -72,10 +72,10 @@ client.on("message", (message) => {
             var resStr;
             for (i = 0; i <= resultSize - 1; i++) {
               // Main:
-              console.log("GL Member #" + result[i].teamId + "\t" + result[i].teamLocation + " " + result[i].teamNickname + "\n\tWins: " + result[i].wins + "\tPoints: " + result[i].pointsFor);
+              console.log(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
               //testy = getSingleTeamPlayers(cookies, 175917, i, 16)
               //console.log(testy)
-              message.channel.send("GL Member #" + result[i].teamId + "\t" + result[i].teamLocation + " " + result[i].teamNickname + "\n\tWins: " + result[i].wins + "\tPoints: " + result[i].pointsFor)
+              message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
             }
           })
