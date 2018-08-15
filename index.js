@@ -91,7 +91,7 @@ client.on("message", (message) => {
                           rstr += ", "
                         };
                         rstr += players[j].playerName;
-                        console("Run " + j + ":\t" + rstr);
+                        console.log("Run " + j + ":\t" + rstr);
 
                         //k = result[j].teamId;
                         //console.log("Starting ID="+k);
