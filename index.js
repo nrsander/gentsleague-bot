@@ -69,12 +69,17 @@ client.on("message", (message) => {
             console.log(result)
 
             var i;
+            var lineups;
             var resStr;
             for (i = 0; i <= resultSize - 1; i++) {
               // Main:
               console.log(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
               //testy = getSingleTeamPlayers(cookies, 175917, i, 16)
               //console.log(testy)
+              lineups = getSingleTeamPlayers(cookies, 175917, i, 16);
+              for (j = 0; j <= lineups.length - 1; j++) {
+                console.log(lineups[j]);
+              }
               message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
             }
