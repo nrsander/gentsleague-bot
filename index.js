@@ -81,13 +81,15 @@ client.on("message", (message) => {
 
 
               var playersLimit = 1;
+var k;
 
-              console.log("Starting ID="+result[i].teamId)
 
               espnFF.getSingleTeamPlayers(cookies, 175917, i, 16)
                     .then(result => {
                       for (j=0; j<=playersLimit-1; j++) {
-                        console.log(result[j].playerName)
+                        k = result[j].teamId;
+                        console.log("Starting ID="+k);
+                        console.log(result[k].playerName);
                       }
                     });
 
