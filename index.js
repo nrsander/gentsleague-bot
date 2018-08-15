@@ -56,7 +56,7 @@ client.on("message", (message) => {
 
 
   // ESPN-getter
-  if (msgCntnt.includes("download gl")) {
+  if (msgCntnt.includes("download gl members")) {
 
     console.log('[ ----- Scraping data from the Gentleman\'s League ESPN page ... ----- ]');
     message.author.send("Thinking ...");
@@ -72,10 +72,9 @@ client.on("message", (message) => {
             for (i = 0; i <= resultSize - 1; i++) {
               // Main:
               console.log("GL Member #" + result[i].teamId + "\t" + result[i].teamLocation + " " + result[i].teamNickname);
-              message.channel.send("GL Member #" + result[i].teamId + "\t" + result[i].teamLocation + " " + result[i].teamNickname)
+              message.channel.send("GL Member #" + result[i].teamId + "\t" + result[i].teamLocation + " " + result[i].teamNickname + "\n\tWins: " + result[i].wins + "\tPoints: " + result[i].pointsFor)
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
             }
-            message.channel.send(resStr)
           })
           .catch({statusCode: 503}, err => {
                   console.error("Error: You fucked up! ${err.message}");
@@ -85,7 +84,6 @@ client.on("message", (message) => {
                   message.channel.send("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
                 })
           .done(result => {
-            message.channel.send("Done!")
             console.log('Done!');
           });
     //message.author.send("Finished.");
