@@ -80,9 +80,10 @@ client.on("message", (message) => {
 
 
 
+              var playersLimit = 1;
               espnFF.getSingleTeamPlayers(cookies, 175917, i, 16)
                     .then(result => {
-                      for (j=0; j<=16; j++) {
+                      for (j=0; j<=playersLimit-1; j++) {
                         console.log(result[j].playerName)
                       }
                     });
