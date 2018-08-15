@@ -17,6 +17,8 @@ const cookies = {
   SWID   : '{D03EEEB0-C999-42DA-9394-C054A93119A9}'
 };
 
+const leagueId = 175917;
+
 // (If running locally:)
 // cd Desktop/CRYPTO\ LYFE/Checkup/GLBot
 
@@ -61,36 +63,41 @@ client.on("message", (message) => {
     message.author.send("Thinking ...");
 
     // Returns simplified league object
-    espnFF.getOverallStandings(cookies, 175917)
+    espnFF.getOverallStandings(cookies, leagueId)
           .then(result => {
             var resultSize = 12;
             console.log("ESPN --> GL --> getOverallStandings:")
             console.log(result)
 
+            //var resStr;
             var i;
-            var lineups;
-            var resStr;
             for (i = 0; i <= resultSize - 1; i++) {
+
               // Main:
-              console.log(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
-              //testy = getSingleTeamPlayers(cookies, 175917, i, 16)
-              //console.log(testy)
               message.channel.send("\n" + result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
+              console.log(result[i].teamLocation + " " + result[i].teamNickname + "\n\t\tGL member #" + result[i].teamId + "\n\t\tWins: " + result[i].wins + "\n\t\tPoints: " + result[i].pointsFor);
+              //testy = getSingleTeamPlayers(cookies, leagueId, i, 16)
+              //console.log(testy)
               //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
 
 
-
               var playersLimit = 1;
-var k;
-
-
-              espnFF.getSingleTeamPlayers(cookies, 175917, i, 16)
-                    .then(result => {
+              var k;
+              espnFF.getSingleTeamPlayers(cookies, leagueId, result[i].teamId, 16)
+                    .then(players => {
+                      rstr = '';
                       for (j=0; j<=playersLimit-1; j++) {
-                        k = result[j].teamId;
-                        console.log("Starting ID="+k);
-                        console.log(result[k].playerName);
+                        if(j>0){
+                          rstr += ", "
+                        };
+                        rstr += players[j].playerName;
+                        console("Run " + j + ":\t" + rstr);
+
+                        //k = result[j].teamId;
+                        //console.log("Starting ID="+k);
+                        //console.log(result[k].playerName);
                       }
+                      message.channel.send("Players:\n" + rstr)
                     });
 
 
@@ -121,7 +128,7 @@ var k;
   if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
     console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
     message.channel.send("COLLUSION??");
-    espnFF.getSingleTeamPlayers(cookies, 175917, 1, 16)
+    espnFF.getSingleTeamPlayers(cookies, leagueId, 1, 16)
           .then(result => {
             for (i=0; i<=16; i++) {
               console.log(result[i].playerName)
