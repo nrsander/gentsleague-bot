@@ -20,7 +20,10 @@ const cookies = {
 };
 
 // R-script
-var R = require("r-script");
+//var R = require("r-script");
+
+
+
 
 const leagueId = 175917;
 
@@ -67,6 +70,9 @@ client.on("message", (message) => {
     console.log('[ ----- Scraping data from the Gentleman\'s League ESPN page ... ----- ]');
     message.author.send("Thinking ...");
 
+    var week = 16;
+    var playersLimit = 1;
+
     // Returns simplified league object
     espnFF.getOverallStandings(cookies, leagueId)
           .then(result => {
@@ -76,21 +82,15 @@ client.on("message", (message) => {
 
             message.channel.send("Week " + week + " Starting QBs:");
 
-            //var resStr;
             var i;
             var tmid;
             for (i = 0; i <= resultSize - 1; i++) {
 
-              // Main:
+              // Main response:
               message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + "\t(GL #" + result[i].teamId + ")\n\tWins: " + result[i].wins + "\tPts: " + result[i].pointsFor);
               console.log(result[i].teamLocation + " " + result[i].teamNickname + "\t(GL #" + result[i].teamId + ")\n\tWins: " + result[i].wins + "\tPts: " + result[i].pointsFor);
-              //testy = getSingleTeamPlayers(cookies, leagueId, i, 16);
-              //console.log(testy);
-              //resStr += resStr + "\n" + "GL Member #" + result[i].teamIdresult + "\t" + result[i].teamLocation + " " + result[i].teamNickname;
 
-              var week = 16;
-              var playersLimit = 1;
-
+              // Get QB1's:
               tmid = result[i].teamId;
               espnFF.getSingleTeamPlayers(cookies, leagueId, tmid, week)
                     .then(players => {
@@ -99,18 +99,13 @@ client.on("message", (message) => {
                         if(j>0){
                           rstr += ", "
                         };
-
-                        console.log("Team-Player:  " + tmid + "-" + j + "\t\t" + rstr);
                         rstr += players[j].playerName;
-
-                        //k = result[j].teamId;
-                        //console.log("Starting ID="+k);
-                        //console.log(result[k].playerName);
+                        console.log("TmId-PlayerNo:  " + tmid + "-" + j);
                       }
-
-                      console.log("players:\t" + rstr);
+                      console.log("Players:\t" + rstr);
                       message.channel.send(rstr);
                     });
+
             }
           })
           .catch({statusCode: 503}, err => {
