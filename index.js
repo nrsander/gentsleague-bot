@@ -17,15 +17,11 @@ const cookies = {
   SWID   : '{D03EEEB0-C999-42DA-9394-C054A93119A9}'
 };
 
-<<<<<<< HEAD
 // R-script
-//var R = require("r-script");
+//var R = require("r-script"); // (Removed from package.json)
 
 
 
-
-=======
->>>>>>> parent of 44a97d8... rs
 const leagueId = 175917;
 
 // (If running locally:)
