@@ -2,7 +2,7 @@
 // STARTUP:   //
 //============//
 
-console.log('||  <---------------------  Booting ...');
+console.log('||  <---------------------  Booting GL Bot ...');
 
 const express = require("express");
 const server = express();
@@ -21,6 +21,16 @@ const cookies = {
 //var R = require("r-script"); // (Removed from package.json)
 
 
+//
+//
+//
+var fs = require("fs");
+var data = fs.readFileSync('example.txt');
+console.log(data.toString());
+console.log("(.) -- Example Displayed -- (.)");
+//
+//
+//
 
 const leagueId = 175917;
 
