@@ -18,6 +18,7 @@
     "express": "3.0.0rc4",
     "r-script": "0.0.3",
     "csv": "3.1.0",
-    "espn-ff-api": "1.0.8"
+    "espn-ff-api": "1.0.8",
+    "gdax": "0.8.0"
   }
 }
