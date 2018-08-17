@@ -4,7 +4,6 @@
 
 console.log('||  <---------------------  Booting ...');
 
-// Express Server
 const express = require("express");
 const server = express();
 const PORT = process.env.PORT;
@@ -12,19 +11,21 @@ console.log(PORT);
 console.log('Server about to start listening ...');
 server.listen(PORT);
 
-// ESPN FF
 const espnFF = require('espn-ff-api');
 const cookies = {
   espnS2 : 'AECEQQFfq9v%2FKF46rl7BoFgHimTDQb5YtXB1lwH6kDf7cRKjMsTUunVQaZTZjsCs7SOLB5L1Y2b7mMDPH7Hgblhb7KUB2assXYlXNRKnwU3DzeN7KRF8zw8EFYX3FFhAmyp4N%2Fl%2BseRM25dqnqI44auvCWrlW9Q0P4DeTDGH%2F9o4BCQXPxnUcWjnIk%2Ff6y8PGBDUPOAPRVoE25CwKaH6bO4ELgI216Xev8wl004HIohqh%2FAs3Xq69S2t3XdUdZTXKAU%3D',
   SWID   : '{D03EEEB0-C999-42DA-9394-C054A93119A9}'
 };
 
+<<<<<<< HEAD
 // R-script
 //var R = require("r-script");
 
 
 
 
+=======
+>>>>>>> parent of 44a97d8... rs
 const leagueId = 175917;
 
 // (If running locally:)
