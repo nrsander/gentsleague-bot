@@ -141,10 +141,10 @@ client.on("message", (message) => {
       console.log('Team ' + j + ":");
 
       // Get this team's roster
-      espnFF.getSingleTeamPlayers(cookies, leagueId, glid, week)
+      espnFF.getSingleTeamPlayers(cookies, leagueId, j, week)
         .then(players => {
-          console.log(players.playerName + ', ' + players.playerPosition);
-          return players
+          console.log(players)
+          //return players
         })
         .catch({statusCode: 503}, err => {
           console.error("Error: You fucked up! ${err.message}");
@@ -154,6 +154,8 @@ client.on("message", (message) => {
           message.channel.send("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
         })
         .done(result => {
+          //var k;
+          //for (k = 0; k < )
           console.log('GL scrape job complete.');
           console.log(players);
         });
