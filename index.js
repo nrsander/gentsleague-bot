@@ -11,18 +11,18 @@ console.log('Hid the Russian bot token in a secret place.');
 
 // (set GL indices)
 const GL_ID = {
-  '1'  : 'JP',
-  '2'  : 'Nick',
-  '3'  : 'Chris',
-  '4'  : 'Brendan',
-  '6'  : 'Joey',
-  '7'  : 'Trevor',
-  '8'  : 'Zak',
-  '9'  : 'Lorenz',
-  '10' : 'Paul',
-  '11' : 'Kade',
-  '12' : 'Vinnie',
-  '13' : 'Jason'
+  1  : 'JP',
+  2  : 'Nick',
+  3  : 'Chris',
+  4  : 'Brendan',
+  6  : 'Joey',
+  7  : 'Trevor',
+  8  : 'Zak',
+  9  : 'Lorenz',
+  10 : 'Paul',
+  11 : 'Kade',
+  12 : 'Vinnie',
+  13 : 'Jason'
 };
 
 
@@ -122,8 +122,11 @@ client.on("message", (message) => {
 
       // Special exception (fuck JJ Howse)
       for (i = 1; i <= GL_ID.length; i++) {
+        console.log(i)
+
         if (i >= 5) {
           i = i + 1
+          console.log(i-1 + " --> " + i)
         };
 
         // GL ID
