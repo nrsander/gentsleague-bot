@@ -136,9 +136,9 @@ client.on("message", (message) => {
                     .done(players => {
                       for (j=0; j<=playersLimit-1; j++) {
                         if(j>0){
-                          let rstr += ", "
+                          rstr += ", "
                         };
-                        let rstr += players[j].playerName;
+                        rstr += players[j].playerName;
                         console.log("(" + j + ")" + "Player    : " + players[j].playerName);
                       }
                       console.log("All " + playersLimit + " Requested Players:\n\t" + rstr);
