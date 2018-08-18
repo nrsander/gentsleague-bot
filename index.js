@@ -128,7 +128,7 @@ client.on("message", (message) => {
 
         // GL ID
         var glid = GL_ID[i];
-        console.log('Team ' + GL_ID[i] + ":")
+        console.log('Team ' + GL_ID[i] + ":");
 
         // Get this team's roster
         espnFF.getSingleTeamPlayers(cookies, leagueId, glid, week)
@@ -146,16 +146,15 @@ client.on("message", (message) => {
           .done(result => {
             console.log('GL scrape job complete.');
           });
-        };
+      };
 
-
-        // Collusion-detector
-        if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
+      // Collusion-detector
+      if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
           console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
           message.channel.send("Collusion - Code Red");
-        };
+      };
 
-  }); // Semi End
+  }; // Semi End
 
 }); // Real End
 
