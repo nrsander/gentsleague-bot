@@ -123,7 +123,6 @@ client.on("message", (message) => {
 
     console.log(GL_ID.length);
     console.log(GL_ID);
-    var glid;
 
     // Special exception (fuck JJ Howse)
     var i;
@@ -136,14 +135,15 @@ client.on("message", (message) => {
         console.log(i + " --> " + j)
       };
 
-      // GL ID
+      // GL ID:  Name
+      var glid;
       glid = GL_ID[j];
-      console.log('Team ' + j + ":");
+      console.log('Team ' + j + ":  " + GL_ID[j]);
 
       // Get this team's roster
       espnFF.getSingleTeamPlayers(cookies=cookies, leagueId=leagueId, teamId=j, scoringPeriodId=week)
         .then(players => {
-          console.log(debug+' '+j)
+          console.log(debug+' '+j);
           console.log(players);
           return players;
         })
