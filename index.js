@@ -124,42 +124,49 @@ client.on("message", (message) => {
     console.log(GL_ID.length);
     console.log(GL_ID);
 
-    // Special exception (fuck JJ Howse)
-    var i;
-    var j;
-    for (i = 1; i <= numTeamsConst; i++) {
-      console.log(i);
-      j = i;
-      if (i >= 5) {
-        j = i + 1;
-        console.log(i + " --> " + j);
-      };
+    espnFF.getMatchups(cookies, leagueId)
+      .then(leagueMatchups => {
+        console.log("GL Matchups:");
+        console.log(leagueMatchups);
+      });
 
-      // GL ID:  Name
-      var glid;
-      glid = GL_ID[j];
-      console.log("Team " + j + ":  " + GL_ID[j]);
 
-      // Get this team's roster
-      espnFF.getSingleTeamLineup(cookies=cookies, leagueId=leagueId, teamId=j, scoringPeriodId=week)
-        .then(team => {
-          console.log("Attempting Team " + j + ":  " + GL_ID[j])
-          console.log(team);
-        })
-        .catch({statusCode: 503}, err => {
-          console.error("Error: You fucked up! ${err.message}");
-          console.error("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
-          message.channel.send("Error: You fucked up!");
-          message.channel.send("${err.message}");
-          message.channel.send("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
-        })
-        .done(result => {
-          //var k;
-          //for (k = 0; k < )
-          console.log('GL scrape job complete.');
-          console.log(result);
-        });
-    };
+    // // Special exception (fuck JJ Howse)
+    // var i;
+    // var j;
+    // for (i = 1; i <= numTeamsConst; i++) {
+    //   console.log(i);
+    //   j = i;
+    //   if (i >= 5) {
+    //     j = i + 1;
+    //     console.log(i + " --> " + j);
+    //   };
+    //
+    //   // GL ID:  Name
+    //   var glid;
+    //   glid = GL_ID[j];
+    //   console.log("Team " + j + ":  " + GL_ID[j]);
+    //
+    //   // Get this team's roster
+    //   espnFF.getSingleTeamLineup(cookies=cookies, leagueId=leagueId, teamId=j, scoringPeriodId=week)
+    //     .then(team => {
+    //       console.log("Attempting Team " + j + ":  " + GL_ID[j])
+    //       console.log(team);
+    //     })
+    //     .catch({statusCode: 503}, err => {
+    //       console.error("Error: You fucked up! ${err.message}");
+    //       console.error("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
+    //       message.channel.send("Error: You fucked up!");
+    //       message.channel.send("${err.message}");
+    //       message.channel.send("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
+    //     })
+    //     .done(result => {
+    //       //var k;
+    //       //for (k = 0; k < )
+    //       console.log('GL scrape job complete.');
+    //       console.log(result);
+    //     });
+    // };
 
     // Collusion-detector
     if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
