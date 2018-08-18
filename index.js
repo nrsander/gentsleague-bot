@@ -149,15 +149,15 @@ client.on("message", (message) => {
         };
 
 
-  // Collusion-detector
-  if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
-    console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
-    message.channel.send("Collusion - Code Red");
-  };
+        // Collusion-detector
+        if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
+          console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
+          message.channel.send("Collusion - Code Red");
+        };
 
-  // End
+  }); // Semi End
 
-});
+}); // Real End
 
 
 //============//
