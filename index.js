@@ -120,42 +120,46 @@ client.on("message", (message) => {
 
     message.author.send("Scraping...");
 
-      // Special exception (fuck JJ Howse)
-      for (i = 1; i <= GL_ID.length; i++) {
-        console.log(i)
+    console.log(GL_ID.length);
+    console.log(GL_ID);
 
-        if (i >= 5) {
-          i = i + 1
-          console.log(i-1 + " --> " + i)
-        };
+    // Special exception (fuck JJ Howse)
+    var i;
+    for (i = 1; i <= 13; i++) {
+      console.log(i)
 
-        // GL ID
-        var glid = GL_ID[i];
-        console.log('Team ' + i + ":");
-
-        // Get this team's roster
-        espnFF.getSingleTeamPlayers(cookies, leagueId, glid, week)
-          .then(players => {
-            console.log(players.playerName + ', ' + players.playerPosition);
-            return players
-          })
-          .catch({statusCode: 503}, err => {
-            console.error("Error: You fucked up! ${err.message}");
-            console.error("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
-            message.channel.send("Error: You fucked up!");
-            message.channel.send("${err.message}");
-            message.channel.send("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
-          })
-          .done(result => {
-            console.log('GL scrape job complete.');
-          });
+      if (i >= 5) {
+        i = i + 1
+        console.log(i-1 + " --> " + i)
       };
 
-      // Collusion-detector
-      if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
-          console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
-          message.channel.send("Collusion - Code Red");
-      };
+      // GL ID
+      var glid = GL_ID[i];
+      console.log('Team ' + i + ":");
+
+      // Get this team's roster
+      espnFF.getSingleTeamPlayers(cookies, leagueId, glid, week)
+        .then(players => {
+          console.log(players.playerName + ', ' + players.playerPosition);
+          return players
+        })
+        .catch({statusCode: 503}, err => {
+          console.error("Error: You fucked up! ${err.message}");
+          console.error("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
+          message.channel.send("Error: You fucked up!");
+          message.channel.send("${err.message}");
+          message.channel.send("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
+        })
+        .done(result => {
+          console.log('GL scrape job complete.');
+        });
+    };
+
+    // Collusion-detector
+    if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
+      console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
+      message.channel.send("Collusion - Code Red");
+    };
 
   }; // Semi End
 
