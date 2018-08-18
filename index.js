@@ -10,6 +10,7 @@ const token = process.env.GL_DISCORD_TOKEN;
 console.log('Hid the Russian bot token in a secret place.');
 
 // (set GL indices)
+const numTeamsConst = 12;
 const GL_ID = {
   1  : 'JP',
   2  : 'Nick',
@@ -125,7 +126,7 @@ client.on("message", (message) => {
 
     // Special exception (fuck JJ Howse)
     var i;
-    for (i = 1; i <= 13; i++) {
+    for (i = 1; i <= numTeamsConst; i++) {
       console.log(i)
 
       if (i >= 5) {
