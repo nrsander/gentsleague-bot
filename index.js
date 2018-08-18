@@ -128,24 +128,23 @@ client.on("message", (message) => {
     var i;
     var j;
     for (i = 1; i <= numTeamsConst; i++) {
-      console.log(i)
+      console.log(i);
       j = i;
       if (i >= 5) {
-        j = i + 1
-        console.log(i + " --> " + j)
+        j = i + 1;
+        console.log(i + " --> " + j);
       };
 
       // GL ID:  Name
       var glid;
       glid = GL_ID[j];
-      console.log('Team ' + j + ":  " + GL_ID[j]);
+      console.log("Team " + j + ":  " + GL_ID[j]);
 
       // Get this team's roster
-      espnFF.getSingleTeamPlayers(cookies=cookies, leagueId=leagueId, teamId=j, scoringPeriodId=week)
-        .then(players => {
-          console.log(debug+' '+j);
-          console.log(players);
-          return players;
+      espnFF.getSingleTeamLineup(cookies=cookies, leagueId=leagueId, teamId=j, scoringPeriodId=week)
+        .then(team => {
+          console.log("Attempting Team " + j + ":  " + GL_ID[j])
+          console.log(team);
         })
         .catch({statusCode: 503}, err => {
           console.error("Error: You fucked up! ${err.message}");
@@ -158,7 +157,7 @@ client.on("message", (message) => {
           //var k;
           //for (k = 0; k < )
           console.log('GL scrape job complete.');
-          console.log(players);
+          console.log(result);
         });
     };
 
