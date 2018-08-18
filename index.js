@@ -126,17 +126,18 @@ client.on("message", (message) => {
 
     // Special exception (fuck JJ Howse)
     var i;
+    var glid;
     for (i = 1; i <= numTeamsConst; i++) {
       console.log(i)
 
       if (i >= 5) {
-        i = i + 1
-        console.log(i-1 + " --> " + i)
+        j = i + 1
+        console.log(i + " --> " + j)
       };
 
       // GL ID
-      var glid = GL_ID[i];
-      console.log('Team ' + i + ":");
+      glid = GL_ID[j];
+      console.log('Team ' + j + ":");
 
       // Get this team's roster
       espnFF.getSingleTeamPlayers(cookies, leagueId, glid, week)
@@ -153,6 +154,7 @@ client.on("message", (message) => {
         })
         .done(result => {
           console.log('GL scrape job complete.');
+          console.log(players);
         });
     };
 
