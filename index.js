@@ -141,10 +141,11 @@ client.on("message", (message) => {
       console.log('Team ' + j + ":");
 
       // Get this team's roster
-      espnFF.getSingleTeamPlayers(cookies, leagueId, teamId=j, scoringPeriodId=week)
+      espnFF.getSingleTeamPlayers(cookies=cookies, leagueId=leagueId, teamId=j, scoringPeriodId=week)
         .then(players => {
-          console.log(players)
-          //return players
+          console.log(debug+' '+j)
+          console.log(players);
+          return players;
         })
         .catch({statusCode: 503}, err => {
           console.error("Error: You fucked up! ${err.message}");
