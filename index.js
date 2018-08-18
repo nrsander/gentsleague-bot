@@ -126,6 +126,7 @@ client.on("message", (message) => {
 
     // Special exception (fuck JJ Howse)
     var i;
+    var j;
     var glid;
     for (i = 1; i <= numTeamsConst; i++) {
       console.log(i)
