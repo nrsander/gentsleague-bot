@@ -128,7 +128,7 @@ client.on("message", (message) => {
 
         // GL ID
         var glid = GL_ID[i];
-        console.log('Team ' + GL_ID[i] + ":");
+        console.log('Team ' + i + ":");
 
         // Get this team's roster
         espnFF.getSingleTeamPlayers(cookies, leagueId, glid, week)
