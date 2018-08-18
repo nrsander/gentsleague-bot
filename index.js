@@ -4,11 +4,30 @@
 
 // (config)
 const config = require("./config.json");
+
 // (env vars)
 const token = process.env.GL_DISCORD_TOKEN;
 console.log('Hid the Russian bot token in a secret place.');
 
+// (set GL indices)
+const GL_ID = {
+  '1'  : 'JP',
+  '2'  : 'Nick',
+  '3'  : 'Chris',
+  '4'  : 'Brendan',
+  '6'  : 'Joey',
+  '7'  : 'Trevor',
+  '8'  : 'Zak',
+  '9'  : 'Lorenz',
+  '10' : 'Paul',
+  '11' : 'Kade',
+  '12' : 'Vinnie',
+  '13' : 'Jason'
+};
+
+
 // ---------------------------------
+
 
 // Set up HTTP server
 console.log('||  <---------------------  Booting GL Bot ...');
@@ -64,10 +83,12 @@ const playersLimit = 1;
 
 
 //============//
+// DISCORD    //
+// CLIENT     //
 // COMMANDS:  //
 //============//
 
-// Start (/restart) Discord client
+// Start (or restart) Discord client
 client.on('ready', function() {
   console.log('');
   console.log('Firing up RoboCommish  ...');
@@ -81,106 +102,61 @@ client.on("message", (message) => {
 
   // (Ensure this msg is NOT from a bot/self ( => infinite loop error))
   if (message.author.bot) {
-    return; // quit
-  }
+    return
+  };
   // (This msg is actually a command)
   if (message.content.startsWith(config.prefix)) {
-    return; // quit
-  }
+    return
+  };
 
-  // convert msg to lowercase
+  // Convert msg to lowercase
   msgCntnt = message.content.toString().toLowerCase();
 
-
-  // if msg = {my makeshift 'scrape ESPN league' command} then ...
+  // If msg is {My makeshift 'scrape ESPN league' command}, then ...
   if (msgCntnt.includes("^teams")) {
-    console.log('[ ----- Scraping data from the Gentleman\'s League ESPN page ... ----- ]');
+    console.log('      <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>      ');
+    console.log('   <> <> <> <> <> <    Scraping data from the Gentleman\'s League on ESPN ...      > <> <> <> <> <>   ');
+    console.log('      <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>      ');
 
-    message.author.send("Thinking ...");
+    message.author.send("Scraping...");
 
-    // Get Overall Standings
-    //    returns simplified league object
-    espnFF.getOverallStandings(cookies, leagueId)
-          .then(result => {
-              var resultSize = result.length;
+      // Special exception (fuck JJ Howse)
+      for (i = 1; i <= gl.length; i++) {
+        if (i >= 5) {
+          i = i + 1
+        };
 
-              console.log("Result:");
-              console.log(result);
-              console.log("\t  ^  =  ESPN-->GL-->getOverallStandings(...)");
-              console.log("\tResult size = " + resultSize);
+        // GL ID
+        var glid = GL_ID[i];
+        console.log('Team ' + GL_ID[i] + ":")
 
-              message.channel.send("QB1 - Week " + week);
-
-              var tmid;
-              var i;
-              for (i = 0; i <= resultSize - 1; i++) {
-
-              // Bot Response:
-              message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + " [GL #" + result[i].teamId + "] " + result[i].wins + " wins, " + result[i].pointsFor + " pts.");
-              console.log(result[i].teamLocation + " " + result[i].teamNickname + " [GL #" + result[i].teamId + "] " + result[i].wins + " wins, " + result[i].pointsFor + " pts.");
-
-
-              //
-              // Get QB1's ...
-              //
-
-
-
-
-              // Scrape roster
-              espnFF.getSingleTeamPlayers(cookies, leagueId, tmid, week)
-                    .then(players => {
-
-                      // Which team are we on?
-                      let tmid = result[i].teamId;
-
-                      // (debug)
-                      console.log("Team ID   : " + tmid);
-                      console.log("Team Name : " + result[i].teamLocation + " " + result[i].teamNickname);
-                      console.log("Players   : \n");
-                      console.log(players);
-                    })
-                    .done(players => {
-
-                      // Loop thru this team's players
-                      for (j=0; j<=playersLimit-1; j++) {
-                        rstr += players[j].playerName;
-                        console.log("(" + j + ")" + "Player    : " + players[j].playerName);
-                        message.channel.send("(Team " + tmid + ") Player " + j + ":\t" + players[j].playerName)
-                      }
-                      //console.log("All " + playersLimit + " Requested Players:\n\t" + rstr);
-                      //message.channel.send("Req'd Players:\n" + rstr);
-                      console.log('==> GetSingleTeamPlayers ==> Complete (100%)');
-                    });
-
-            }
+        // Get this team's roster
+        espnFF.getSingleTeamPlayers(cookies, leagueId, glid, week)
+          .then(players => {
+            console.log(players.playerName + ', ' + players.playerPosition);
+            return players
           })
           .catch({statusCode: 503}, err => {
-                  console.error("Error: You fucked up! ${err.message}");
-                  console.error("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
-                  message.channel.send("Error: You fucked up!");
-                  message.channel.send("${err.message}");
-                  message.channel.send("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
-                })
+            console.error("Error: You fucked up! ${err.message}");
+            console.error("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
+            message.channel.send("Error: You fucked up!");
+            message.channel.send("${err.message}");
+            message.channel.send("Perhaps check that your Heroku environ vars are your correct espn_s2 and SWID cookies?");
+          })
           .done(result => {
-            console.log('Done!');
+            console.log('GL scrape job complete.');
           });
-    //message.author.send("Finished.");
-  }
+        };
 
 
-  var pipi;
-  // Collusion Detector
+  // Collusion-detector
   if (msgCntnt.includes("collusion") || msgCntnt.includes("collude") || msgCntnt.includes("colluding")  || msgCntnt.includes("colluder")) {
     console.log('[ << ----- COLLUSION DETECTED ----- >> ]');
-    message.channel.send("COLLUSION??");
-    espnFF.getSingleTeamPlayers(cookies, leagueId, 1, 16)
-          .then(result => {
-            for (i=0; i<=16; i++) {
-              console.log(result[i].playerName)
-            }
-          });
-  }
+    message.channel.send("Collusion - Code Red");
+  };
+
+  // End
+
 });
 
 
