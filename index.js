@@ -111,8 +111,6 @@ client.on("message", (message) => {
 
               message.channel.send("QB1 - Week " + week);
 
-              let rstr = '';
-
               var tmid;
               var i;
               for (i = 0; i <= resultSize - 1; i++) {
@@ -121,29 +119,37 @@ client.on("message", (message) => {
               message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + " [GL #" + result[i].teamId + "] " + result[i].wins + " wins, " + result[i].pointsFor + " pts.");
               console.log(result[i].teamLocation + " " + result[i].teamNickname + " [GL #" + result[i].teamId + "] " + result[i].wins + " wins, " + result[i].pointsFor + " pts.");
 
+
+              //
               // Get QB1's ...
+              //
 
-              // Which team are we on?
-              let tmid = result[i].teamId;
-              console.log("Team ID   : " + tmid);
-              console.log("Team Name : " + result[i].teamLocation + " " + result[i].teamNickname);
 
+
+
+              // Scrape roster
               espnFF.getSingleTeamPlayers(cookies, leagueId, tmid, week)
                     .then(players => {
-                      console.log("Players:");
+
+                      // Which team are we on?
+                      let tmid = result[i].teamId;
+
+                      // (debug)
+                      console.log("Team ID   : " + tmid);
+                      console.log("Team Name : " + result[i].teamLocation + " " + result[i].teamNickname);
+                      console.log("Players   : \n");
                       console.log(players);
                     })
                     .done(players => {
+
+                      // Loop thru this team's players
                       for (j=0; j<=playersLimit-1; j++) {
-                        if(j>0){
-                          rstr += ", "
-                        };
                         rstr += players[j].playerName;
                         console.log("(" + j + ")" + "Player    : " + players[j].playerName);
+                        message.channel.send("(Team " + tmid + ") Player " + j + ":\t" + players[j].playerName)
                       }
-                      console.log("All " + playersLimit + " Requested Players:\n\t" + rstr);
-                      message.channel.send("Req'd Players:\n" + rstr);
-
+                      //console.log("All " + playersLimit + " Requested Players:\n\t" + rstr);
+                      //message.channel.send("Req'd Players:\n" + rstr);
                       console.log('==> GetSingleTeamPlayers ==> Complete (100%)');
                     });
 
