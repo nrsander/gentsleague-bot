@@ -123,14 +123,14 @@ client.on("message", (message) => {
 
     console.log(GL_ID.length);
     console.log(GL_ID);
+    var glid;
 
     // Special exception (fuck JJ Howse)
     var i;
     var j;
-    var glid;
     for (i = 1; i <= numTeamsConst; i++) {
       console.log(i)
-
+      j = i;
       if (i >= 5) {
         j = i + 1
         console.log(i + " --> " + j)
@@ -141,7 +141,7 @@ client.on("message", (message) => {
       console.log('Team ' + j + ":");
 
       // Get this team's roster
-      espnFF.getSingleTeamPlayers(cookies, leagueId, j, week)
+      espnFF.getSingleTeamPlayers(cookies, leagueId, teamId=j, scoringPeriodId=week)
         .then(players => {
           console.log(players)
           //return players
