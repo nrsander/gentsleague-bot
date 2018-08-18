@@ -102,18 +102,20 @@ client.on("message", (message) => {
     //    returns simplified league object
     espnFF.getOverallStandings(cookies, leagueId)
           .then(result => {
-            var resultSize = result.length;
+              var resultSize = result.length;
 
-            console.log("Result:");
-            console.log(result);
-            console.log("  ^  =  ESPN-->GL-->getOverallStandings(...)");
-            console.log("Result size = " + resultSize);
+              console.log("Result:");
+              console.log(result);
+              console.log("\t  ^  =  ESPN-->GL-->getOverallStandings(...)");
+              console.log("\tResult size = " + resultSize);
 
-            message.channel.send("QB1 - Week " + week);
+              message.channel.send("QB1 - Week " + week);
 
-            var tmid;
-            var i;
-            for (i = 0; i <= resultSize - 1; i++) {
+              let rstr = '';
+
+              var tmid;
+              var i;
+              for (i = 0; i <= resultSize - 1; i++) {
 
               // Bot Response:
               message.channel.send(result[i].teamLocation + " " + result[i].teamNickname + " [GL #" + result[i].teamId + "] " + result[i].wins + " wins, " + result[i].pointsFor + " pts.");
@@ -122,21 +124,21 @@ client.on("message", (message) => {
               // Get QB1's ...
 
               // Which team are we on?
-              tmid = result[i].teamId;
+              let tmid = result[i].teamId;
               console.log("Team ID   : " + tmid);
               console.log("Team Name : " + result[i].teamLocation + " " + result[i].teamNickname);
 
               espnFF.getSingleTeamPlayers(cookies, leagueId, tmid, week)
                     .then(players => {
-                      console.log("Players: " + players);
+                      console.log("Players:");
+                      console.log(players);
                     })
-                    .done(result => {
-                      rstr = '';
+                    .done(players => {
                       for (j=0; j<=playersLimit-1; j++) {
                         if(j>0){
-                          rstr += ", "
+                          let rstr += ", "
                         };
-                        rstr += players[j].playerName;
+                        let rstr += players[j].playerName;
                         console.log("(" + j + ")" + "Player    : " + players[j].playerName);
                       }
                       console.log("All " + playersLimit + " Requested Players:\n\t" + rstr);
