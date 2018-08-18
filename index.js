@@ -121,7 +121,7 @@ client.on("message", (message) => {
     message.author.send("Scraping...");
 
       // Special exception (fuck JJ Howse)
-      for (i = 1; i <= gl.length; i++) {
+      for (i = 1; i <= GL_ID.length; i++) {
         if (i >= 5) {
           i = i + 1
         };
